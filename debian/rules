@@ -6,23 +6,34 @@ TARGET=arm-none-eabi
 PACKAGE=gcc-arm-none-eabi
 
 CONFARGS = -v \
-        --enable-languages=c,c++ \
         --prefix=/usr/lib \
         --infodir=/usr/share/info \
         --mandir=/usr/share/man \
 	--bindir=/usr/bin \
 	--libexecdir=/usr/lib \
 	--libdir=/usr/lib \
-        --enable-shared \
+	--disable-shared \
+	--enable-multilib \
+        --enable-languages="c,c++" \
+	--with-gnu-as \
+	--with-gnu-ld \
         --with-system-zlib \
         --enable-long-long \
-        --enable-nls \
-        --without-included-gettext \
+	--disable-nls \
+	--disable-threads \
 	--disable-libssp \
+	--disable-libstdcxx-pch \
+	--disable-libmudflap \
+	--disable-libgomp \
+	--disable-werror \
+        --without-included-gettext \
         --build=$(DEB_BUILD_GNU_TYPE) \
         --host=$(DEB_HOST_GNU_TYPE) \
         --target=$(TARGET) \
 
+#	--with-newlib \
+#	--disable-newlib-supplied-syscalls \
+#	--with-headers=newlib/libc/include \
 
 srcdir=src
 
