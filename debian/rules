@@ -6,19 +6,19 @@ TARGET=arm-none-eabi
 PACKAGE=gcc-arm-none-eabi
 
 CONFARGS = -v \
-        --prefix=/usr/lib \
-        --infodir=/usr/share/info \
-        --mandir=/usr/share/man \
+	--prefix=/usr/lib \
+	--infodir=/usr/share/info \
+	--mandir=/usr/share/man \
 	--bindir=/usr/bin \
 	--libexecdir=/usr/lib \
 	--libdir=/usr/lib \
 	--disable-shared \
 	--enable-multilib \
-        --enable-languages="c,c++" \
+	--enable-languages="c,c++" \
 	--with-gnu-as \
 	--with-gnu-ld \
-        --with-system-zlib \
-        --enable-long-long \
+	--with-system-zlib \
+	--enable-long-long \
 	--disable-nls \
 	--disable-threads \
 	--disable-libssp \
@@ -26,14 +26,14 @@ CONFARGS = -v \
 	--disable-libmudflap \
 	--disable-libgomp \
 	--disable-werror \
-        --without-included-gettext \
-        --build=$(DEB_BUILD_GNU_TYPE) \
-        --host=$(DEB_HOST_GNU_TYPE) \
-        --target=$(TARGET) \
+	--without-included-gettext \
+	--build=$(DEB_BUILD_GNU_TYPE) \
+	--host=$(DEB_HOST_GNU_TYPE) \
+	--target=$(TARGET) \
+	--with-newlib \
+	--disable-newlib-supplied-syscalls \
+	--with-headers=newlib/libc/include \
 
-#	--with-newlib \
-#	--disable-newlib-supplied-syscalls \
-#	--with-headers=newlib/libc/include \
 
 srcdir=src
 
@@ -71,15 +71,14 @@ configure-stamp: $(unpack_stamp) patch-stamp
 	dh_testdir
 	rm -f $(BUILD_TREE)/gcc/doc/*.1
 	rm -f $(BUILD_TREE)/gcc/doc/*.info
-	#for i in $(gfdl_texinfo_files); do \
-	#  cp debian/dummy.texi `echo $(BUILD_TREE)`/$$i; \
-	#done
-	#for i in $(gfdl_toplevel_texinfo_files); do \
-	#  n=$$(basename $$i .texi); \
-	#  sed "s/@name@/$$n/g" debian/gcc-dummy.texi > `echo $(BUILD_TREE)`/$$i; \
-	#done
 	mkdir -p objdir
 	# Add here commands to configure the package.
+
+	mkdir newlib-src
+	cd newlib-src && tar xf /usr/src/newlib/newlib-1.18.0.tar.lzma 
+	ln -s ../newlib-src/newlib ${BUILD_TREE}/
+	ln -s ../newlib-src/libgloss ${BUILD_TREE}/
+
 	cd objdir && env CC="gcc" `echo ../$(BUILD_TREE)`/configure $(CONFARGS) 
 	touch configure-stamp
 

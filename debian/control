@@ -3,7 +3,7 @@ Section: devel
 Priority: extra
 Maintainer: Anthony Towns <ajt@debian.org>
 Standards-Version: 3.5.3
-Build-Depends: m4, autoconf (>= 2.13), libtool, gawk, bzip2, binutils-arm-none-eabi (>= 2.22), bison, flex, gettext, texinfo, zlib1g-dev, debhelper (>= 4.2.10), tar (>= 1.13.18), automake1.9, libmpfr-dev, lsb-release, patchutils, gcc-4.6-source, libmpc-dev
+Build-Depends: m4, autoconf (>= 2.13), libtool, gawk, bzip2, binutils-arm-none-eabi (>= 2.22), bison, flex, gettext, texinfo, zlib1g-dev, debhelper (>= 4.2.10), tar (>= 1.13.18), automake1.9, libmpfr-dev, lsb-release, patchutils, gcc-4.6-source, newlib-source, libmpc-dev
 Build-Conflicts: libgcc0, libgcc300
 
 Package: gcc-arm-none-eabi
