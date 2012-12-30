@@ -1,7 +1,5 @@
-This is a debian pakcage of the GNU gcc compiler compiled as an avr
-crosscompiler. This package was downloaded from:
-
-  ftp://ftp.funet.fi/pub/gnu/prep/gcc/gcc-3.3.2/
+This is a debian pakcage of the GNU gcc compiler compiled as an ARM
+crosscompiler.
 
 Copyright: GNU General Public License
 
