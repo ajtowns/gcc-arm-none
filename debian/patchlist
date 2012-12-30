@@ -1,0 +1,3 @@
+debian_patches/patch-gcc-config-arm-t-arm-elf.diff
+debian_patches/patch-libgcc-divide-exceptions.diff
+debian_patches/patch-gcc-gfdl-build.diff
